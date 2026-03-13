@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文章列表 - 个人主页</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#60a5fa',
+                        secondary: '#bfdbfe',
+                        dark: '#1e40af',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                },
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+            .transition-all-300 {
+                transition: all 300ms ease-in-out;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- 导航栏 -->
+    <nav class="bg-primary/90 backdrop-blur-sm fixed w-full z-10 shadow-md">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="index.html" class="text-white text-2xl font-bold text-shadow">个人主页</a>
+            <div class="hidden md:flex space-x-8">
+                <a href="about.html" class="text-white hover:text-secondary transition-all-300">关于我</a>
+                <a href="articles.html" class="text-white hover:text-secondary transition-all-300">文章列表</a>
+                <a href="contact.html" class="text-white hover:text-secondary transition-all-300">联系我</a>
+            </div>
+            <button class="md:hidden text-white focus:outline-none" id="menu-toggle">
+                <i class="fa fa-bars text-xl"></i>
+            </button>
+        </div>
+        <!-- 移动端菜单 -->
+        <div class="md:hidden hidden bg-primary/95 shadow-lg absolute w-full" id="mobile-menu">
+            <div class="container mx-auto px-4 py-3 flex flex-col space-y-4">
+                <a href="about.html" class="text-white hover:text-secondary transition-all-300 py-2">关于我</a>
+                <a href="articles.html" class="text-white hover:text-secondary transition-all-300 py-2">文章列表</a>
+                <a href="contact.html" class="text-white hover:text-secondary transition-all-300 py-2">联系我</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 文章列表 -->
+    <main class="pt-24 pb-16">
+        <div class="container mx-auto px-4">
+            <h1 class="text-3xl font-bold text-center text-dark mb-12">文章列表</h1>
+            
+            <!-- 搜索和筛选 -->
+            <div class="mb-8 flex flex-col md:flex-row justify-between items-center">
+                <div class="w-full md:w-1/3 mb-4 md:mb-0">
+                    <div class="relative">
+                        <input type="text" placeholder="搜索文章..." class="w-full px-4 py-2 pl-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-all-300">
+                        <i class="fa fa-search absolute left-3 top-3 text-gray-400"></i>
+                    </div>
+                </div>
+                <div class="flex space-x-4">
+                    <select class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-all-300">
+                        <option>所有分类</option>
+                        <option>前端开发</option>
+                        <option>CSS</option>
+                        <option>JavaScript</option>
+                        <option>React</option>
+                        <option>性能优化</option>
+                        <option>工具</option>
+                    </select>
+                    <select class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-all-300">
+                        <option>最新发布</option>
+                        <option>最早发布</option>
+                    </select>
+                </div>
+            </div>
+            
+            <!-- 文章卡片列表 -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- 文章卡片 1 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all-300">
+                    <div class="h-48 bg-secondary flex items-center justify-center">
+                        <i class="fa fa-file-text-o text-5xl text-primary/70"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center text-gray-500 text-sm mb-2">
+                            <span class="mr-4"><i class="fa fa-calendar-o mr-1"></i> 2024-01-15</span>
+                            <span><i class="fa fa-tag mr-1"></i> 前端开发</span>
+                        </div>
+                        <h3 class="text-xl font-semibold text-dark mb-2">前端开发入门指南</h3>
+                        <p class="text-gray-600 mb-4">
+                            本文介绍了前端开发的基本概念和技术栈，适合初学者阅读。
+                        </p>
+                        <a href="article.html" class="text-primary hover:text-dark transition-all-300 inline-block">
+                            阅读更多 <i class="fa fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 文章卡片 2 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all-300">
+                    <div class="h-48 bg-secondary flex items-center justify-center">
+                        <i class="fa fa-file-text-o text-5xl text-primary/70"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center text-gray-500 text-sm mb-2">
+                            <span class="mr-4"><i class="fa fa-calendar-o mr-1"></i> 2024-01-10</span>
+                            <span><i class="fa fa-tag mr-1"></i> CSS</span>
+                        </div>
+                        <h3 class="text-xl font-semibold text-dark mb-2">Tailwind CSS 实用技巧</h3>
+                        <p class="text-gray-600 mb-4">
+                            分享一些 Tailwind CSS 的实用技巧，帮助你更高效地构建响应式网站。
+                        </p>
+                        <a href="article.html" class="text-primary hover:text-dark transition-all-300 inline-block">
+                            阅读更多 <i class="fa fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 文章卡片 3 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all-300">
+                    <div class="h-48 bg-secondary flex items-center justify-center">
+                        <i class="fa fa-file-text-o text-5xl text-primary/70"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center text-gray-500 text-sm mb-2">
+                            <span class="mr-4"><i class="fa fa-calendar-o mr-1"></i> 2024-01-05</span>
+                            <span><i class="fa fa-tag mr-1"></i> JavaScript</span>
+                        </div>
+                        <h3 class="text-xl font-semibold text-dark mb-2">JavaScript 异步编程详解</h3>
+                        <p class="text-gray-600 mb-4">
+                            深入了解 JavaScript 的异步编程模型，包括回调、Promise 和 async/await。
+                        </p>
+                        <a href="article.html" class="text-primary hover:text-dark transition-all-300 inline-block">
+                            阅读更多 <i class="fa fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 文章卡片 4 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all-300">
+                    <div class="h-48 bg-secondary flex items-center justify-center">
+                        <i class="fa fa-file-text-o text-5xl text-primary/70"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center text-gray-500 text-sm mb-2">
+                            <span class="mr-4"><i class="fa fa-calendar-o mr-1"></i> 2023-12-20</span>
+                            <span><i class="fa fa-tag mr-1"></i> React</span>
+                        </div>
+                        <h3 class="text-xl font-semibold text-dark mb-2">React 组件设计最佳实践</h3>
+                        <p class="text-gray-600 mb-4">
+                            探讨 React 组件的设计原则和最佳实践，提高代码质量和可维护性。
+                        </p>
+                        <a href="article.html" class="text-primary hover:text-dark transition-all-300 inline-block">
+                            阅读更多 <i class="fa fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 文章卡片 5 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all-300">
+                    <div class="h-48 bg-secondary flex items-center justify-center">
+                        <i class="fa fa-file-text-o text-5xl text-primary/70"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center text-gray-500 text-sm mb-2">
+                            <span class="mr-4"><i class="fa fa-calendar-o mr-1"></i> 2023-12-15</span>
+                            <span><i class="fa fa-tag mr-1"></i> 性能优化</span>
+                        </div>
+                        <h3 class="text-xl font-semibold text-dark mb-2">前端性能优化策略</h3>
+                        <p class="text-gray-600 mb-4">
+                            分享一些前端性能优化的策略和技巧，提升网站加载速度和用户体验。
+                        </p>
+                        <a href="article.html" class="text-primary hover:text-dark transition-all-300 inline-block">
+                            阅读更多 <i class="fa fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 文章卡片 6 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all-300">
+                    <div class="h-48 bg-secondary flex items-center justify-center">
+                        <i class="fa fa-file-text-o text-5xl text-primary/70"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center text-gray-500 text-sm mb-2">
+                            <span class="mr-4"><i class="fa fa-calendar-o mr-1"></i> 2023-12-10</span>
+                            <span><i class="fa fa-tag mr-1"></i> 工具</span>
+                        </div>
+                        <h3 class="text-xl font-semibold text-dark mb-2">前端开发必备工具推荐</h3>
+                        <p class="text-gray-600 mb-4">
+                            介绍一些前端开发中常用的工具和资源，提高开发效率和代码质量。
+                        </p>
+                        <a href="article.html" class="text-primary hover:text-dark transition-all-300 inline-block">
+                            阅读更多 <i class="fa fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 在这里添加更多文章卡片 -->
+                <!-- 复制上面的文章卡片结构，修改内容和链接 -->
+            </div>
+            
+            <!-- 分页 -->
+            <div class="mt-12 flex justify-center">
+                <nav class="inline-flex rounded-md shadow">
+                    <a href="#" class="px-3 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 transition-all-300">
+                        <i class="fa fa-chevron-left"></i>
+                    </a>
+                    <a href="#" class="px-3 py-2 border-t border-b border-gray-300 bg-primary text-sm font-medium text-white">1</a>
+                    <a href="#" class="px-3 py-2 border-t border-b border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 transition-all-300">2</a>
+                    <a href="#" class="px-3 py-2 border-t border-b border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 transition-all-300">3</a>
+                    <a href="#" class="px-3 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 transition-all-300">
+                        <i class="fa fa-chevron-right"></i>
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="bg-primary/90 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <h3 class="text-xl font-bold text-shadow">个人主页</h3>
+                    <p class="text-white/80 mt-1">© 2024 版权所有</p>
+                </div>
+                <div class="flex space-x-4">
+                    <a href="#" class="text-white hover:text-secondary transition-all-300">
+                        <i class="fa fa-github text-xl"></i>
+                    </a>
+                    <a href="#" class="text-white hover:text-secondary transition-all-300">
+                        <i class="fa fa-twitter text-xl"></i>
+                    </a>
+                    <a href="#" class="text-white hover:text-secondary transition-all-300">
+                        <i class="fa fa-linkedin text-xl"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // 移动端菜单切换
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>
