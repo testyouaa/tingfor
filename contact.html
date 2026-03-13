@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>联系我 - 个人主页</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#60a5fa',
+                        secondary: '#bfdbfe',
+                        dark: '#1e40af',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                },
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+            .transition-all-300 {
+                transition: all 300ms ease-in-out;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- 导航栏 -->
+    <nav class="bg-primary/90 backdrop-blur-sm fixed w-full z-10 shadow-md">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="index.html" class="text-white text-2xl font-bold text-shadow">个人主页</a>
+            <div class="hidden md:flex space-x-8">
+                <a href="about.html" class="text-white hover:text-secondary transition-all-300">关于我</a>
+                <a href="articles.html" class="text-white hover:text-secondary transition-all-300">文章列表</a>
+                <a href="contact.html" class="text-white hover:text-secondary transition-all-300">联系我</a>
+            </div>
+            <button class="md:hidden text-white focus:outline-none" id="menu-toggle">
+                <i class="fa fa-bars text-xl"></i>
+            </button>
+        </div>
+        <!-- 移动端菜单 -->
+        <div class="md:hidden hidden bg-primary/95 shadow-lg absolute w-full" id="mobile-menu">
+            <div class="container mx-auto px-4 py-3 flex flex-col space-y-4">
+                <a href="about.html" class="text-white hover:text-secondary transition-all-300 py-2">关于我</a>
+                <a href="articles.html" class="text-white hover:text-secondary transition-all-300 py-2">文章列表</a>
+                <a href="contact.html" class="text-white hover:text-secondary transition-all-300 py-2">联系我</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 联系内容 -->
+    <main class="pt-24 pb-16">
+        <div class="container mx-auto px-4">
+            <h1 class="text-3xl font-bold text-center text-dark mb-12">联系我</h1>
+            
+            <div class="flex flex-col md:flex-row gap-8">
+                <!-- 联系表单 -->
+                <div class="md:w-2/3">
+                    <div class="bg-white p-8 rounded-lg shadow-md">
+                        <h2 class="text-2xl font-semibold text-dark mb-6">发送消息</h2>
+                        <form class="space-y-6">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label for="name" class="block text-gray-700 font-medium mb-2">姓名</label>
+                                    <input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-all-300">
+                                </div>
+                                <div>
+                                    <label for="email" class="block text-gray-700 font-medium mb-2">邮箱</label>
+                                    <input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-all-300">
+                                </div>
+                            </div>
+                            <div>
+                                <label for="subject" class="block text-gray-700 font-medium mb-2">主题</label>
+                                <input type="text" id="subject" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-all-300">
+                            </div>
+                            <div>
+                                <label for="message" class="block text-gray-700 font-medium mb-2">消息</label>
+                                <textarea id="message" rows="5" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-all-300"></textarea>
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="bg-primary hover:bg-dark text-white font-medium py-2 px-8 rounded-full transition-all-300 shadow-md hover:shadow-lg">
+                                    发送消息
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                
+                <!-- 联系信息 -->
+                <div class="md:w-1/3">
+                    <div class="bg-white p-8 rounded-lg shadow-md mb-8">
+                        <h2 class="text-2xl font-semibold text-dark mb-6">联系信息</h2>
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                                    <i class="fa fa-envelope text-primary text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-dark mb-1">邮箱</h3>
+                                    <p class="text-gray-600">example@example.com</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                                    <i class="fa fa-phone text-primary text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-dark mb-1">电话</h3>
+                                    <p class="text-gray-600">123-456-7890</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                                    <i class="fa fa-map-marker text-primary text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-dark mb-1">地址</h3>
+                                    <p class="text-gray-600">北京市朝阳区</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 社交媒体 -->
+                    <div class="bg-white p-8 rounded-lg shadow-md">
+                        <h2 class="text-2xl font-semibold text-dark mb-6">社交媒体</h2>
+                        <div class="flex space-x-4">
+                            <a href="#" class="w-12 h-12 bg-primary/10 hover:bg-primary/20 rounded-full flex items-center justify-center text-primary transition-all-300">
+                                <i class="fa fa-github text-xl"></i>
+                            </a>
+                            <a href="#" class="w-12 h-12 bg-primary/10 hover:bg-primary/20 rounded-full flex items-center justify-center text-primary transition-all-300">
+                                <i class="fa fa-twitter text-xl"></i>
+                            </a>
+                            <a href="#" class="w-12 h-12 bg-primary/10 hover:bg-primary/20 rounded-full flex items-center justify-center text-primary transition-all-300">
+                                <i class="fa fa-linkedin text-xl"></i>
+                            </a>
+                            <a href="#" class="w-12 h-12 bg-primary/10 hover:bg-primary/20 rounded-full flex items-center justify-center text-primary transition-all-300">
+                                <i class="fa fa-weixin text-xl"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="bg-primary/90 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <h3 class="text-xl font-bold text-shadow">个人主页</h3>
+                    <p class="text-white/80 mt-1">© 2024 版权所有</p>
+                </div>
+                <div class="flex space-x-4">
+                    <a href="#" class="text-white hover:text-secondary transition-all-300">
+                        <i class="fa fa-github text-xl"></i>
+                    </a>
+                    <a href="#" class="text-white hover:text-secondary transition-all-300">
+                        <i class="fa fa-twitter text-xl"></i>
+                    </a>
+                    <a href="#" class="text-white hover:text-secondary transition-all-300">
+                        <i class="fa fa-linkedin text-xl"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // 移动端菜单切换
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>联系我 - 个人主页</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#60a5fa',
+                        secondary: '#bfdbfe',
+                        dark: '#1e40af',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                },
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+            .transition-all-300 {
+                transition: all 300ms ease-in-out;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- 导航栏 -->
+    <nav class="bg-primary/90 backdrop-blur-sm fixed w-full z-10 shadow-md">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="index.html" class="text-white text-2xl font-bold text-shadow">个人主页</a>
+            <div class="hidden md:flex space-x-8">
+                <a href="about.html" class="text-white hover:text-secondary transition-all-300">关于我</a>
+                <a href="articles.html" class="text-white hover:text-secondary transition-all-300">文章列表</a>
+                <a href="contact.html" class="text-white hover:text-secondary transition-all-300">联系我</a>
+            </div>
+            <button class="md:hidden text-white focus:outline-none" id="menu-toggle">
+                <i class="fa fa-bars text-xl"></i>
+            </button>
+        </div>
+        <!-- 移动端菜单 -->
+        <div class="md:hidden hidden bg-primary/95 shadow-lg absolute w-full" id="mobile-menu">
+            <div class="container mx-auto px-4 py-3 flex flex-col space-y-4">
+                <a href="about.html" class="text-white hover:text-secondary transition-all-300 py-2">关于我</a>
+                <a href="articles.html" class="text-white hover:text-secondary transition-all-300 py-2">文章列表</a>
+                <a href="contact.html" class="text-white hover:text-secondary transition-all-300 py-2">联系我</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 联系内容 -->
+    <main class="pt-24 pb-16">
+        <div class="container mx-auto px-4">
+            <h1 class="text-3xl font-bold text-center text-dark mb-12">联系我</h1>
+            
+            <div class="flex flex-col md:flex-row gap-8">
+                <!-- 联系表单 -->
+                <div class="md:w-2/3">
+                    <div class="bg-white p-8 rounded-lg shadow-md">
+                        <h2 class="text-2xl font-semibold text-dark mb-6">发送消息</h2>
+                        <form class="space-y-6">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label for="name" class="block text-gray-700 font-medium mb-2">姓名</label>
+                                    <input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-all-300">
+                                </div>
+                                <div>
+                                    <label for="email" class="block text-gray-700 font-medium mb-2">邮箱</label>
+                                    <input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-all-300">
+                                </div>
+                            </div>
+                            <div>
+                                <label for="subject" class="block text-gray-700 font-medium mb-2">主题</label>
+                                <input type="text" id="subject" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-all-300">
+                            </div>
+                            <div>
+                                <label for="message" class="block text-gray-700 font-medium mb-2">消息</label>
+                                <textarea id="message" rows="5" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-all-300"></textarea>
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="bg-primary hover:bg-dark text-white font-medium py-2 px-8 rounded-full transition-all-300 shadow-md hover:shadow-lg">
+                                    发送消息
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                
+                <!-- 联系信息 -->
+                <div class="md:w-1/3">
+                    <div class="bg-white p-8 rounded-lg shadow-md mb-8">
+                        <h2 class="text-2xl font-semibold text-dark mb-6">联系信息</h2>
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                                    <i class="fa fa-envelope text-primary text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-dark mb-1">邮箱</h3>
+                                    <p class="text-gray-600">example@example.com</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                                    <i class="fa fa-phone text-primary text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-dark mb-1">电话</h3>
+                                    <p class="text-gray-600">123-456-7890</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                                    <i class="fa fa-map-marker text-primary text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-dark mb-1">地址</h3>
+                                    <p class="text-gray-600">北京市朝阳区</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 社交媒体 -->
+                    <div class="bg-white p-8 rounded-lg shadow-md">
+                        <h2 class="text-2xl font-semibold text-dark mb-6">社交媒体</h2>
+                        <div class="flex space-x-4">
+                            <a href="#" class="w-12 h-12 bg-primary/10 hover:bg-primary/20 rounded-full flex items-center justify-center text-primary transition-all-300">
+                                <i class="fa fa-github text-xl"></i>
+                            </a>
+                            <a href="#" class="w-12 h-12 bg-primary/10 hover:bg-primary/20 rounded-full flex items-center justify-center text-primary transition-all-300">
+                                <i class="fa fa-twitter text-xl"></i>
+                            </a>
+                            <a href="#" class="w-12 h-12 bg-primary/10 hover:bg-primary/20 rounded-full flex items-center justify-center text-primary transition-all-300">
+                                <i class="fa fa-linkedin text-xl"></i>
+                            </a>
+                            <a href="#" class="w-12 h-12 bg-primary/10 hover:bg-primary/20 rounded-full flex items-center justify-center text-primary transition-all-300">
+                                <i class="fa fa-weixin text-xl"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="bg-primary/90 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <h3 class="text-xl font-bold text-shadow">个人主页</h3>
+                    <p class="text-white/80 mt-1">© 2024 版权所有</p>
+                </div>
+                <div class="flex space-x-4">
+                    <a href="#" class="text-white hover:text-secondary transition-all-300">
+                        <i class="fa fa-github text-xl"></i>
+                    </a>
+                    <a href="#" class="text-white hover:text-secondary transition-all-300">
+                        <i class="fa fa-twitter text-xl"></i>
+                    </a>
+                    <a href="#" class="text-white hover:text-secondary transition-all-300">
+                        <i class="fa fa-linkedin text-xl"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // 移动端菜单切换
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>
